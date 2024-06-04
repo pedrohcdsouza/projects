@@ -1,0 +1,3 @@
+function IsLogged(){
+    return false
+}
