@@ -1,3 +1,0 @@
-function IsLogged(){
-    return false
-}
