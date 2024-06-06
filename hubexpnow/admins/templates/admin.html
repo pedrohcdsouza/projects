@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} Admin {% endblock title %}
+
+{% block header %}
+    <a href='clientes'>Clientes</a>
+    <a href='dashboard'>Dashboard</a>
+    <a href='config'>Configurações</a>
+{% endblock header %}
+
+{% block content %}
+    <h1>Este é a aba de adminstração</h1>
+{% endblock content %}
