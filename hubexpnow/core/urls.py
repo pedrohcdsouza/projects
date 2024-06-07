@@ -19,7 +19,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('crud/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('admin/', include('admins.urls'))
+    path('admin/', admin.site.urls),
+    path('/', views.home, name='home'),
 ]
