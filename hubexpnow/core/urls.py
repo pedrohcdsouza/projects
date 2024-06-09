@@ -23,4 +23,4 @@ urlpatterns = [
     path('', views.core, name='core'),
 ]
 
-# teste
+# test
