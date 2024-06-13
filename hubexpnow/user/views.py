@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+from django.contrib.auth import logout as logout_django
 from django.utils.crypto import get_random_string
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 import string
 
 def temporary_password():
@@ -39,6 +42,13 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user:
             login_django(request, user)
-            return HttpResponse('Autenticado')
+            
+            return render(request, 'user/pages/logout.html')
         else:
             return HttpResponse('Usuário ou senha inválido')
+
+@login_required(login_url='user:login', redirect_field_name='next')
+def logout(request):
+    logout_django(request)
+    return redirect(reverse('user:login'))
+    
