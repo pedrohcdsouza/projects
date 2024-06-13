@@ -19,8 +19,7 @@ def create(request):
     else:
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password = temporary_password()
-        HttpResponse('username')
+        password = request.POST.get('password')
 
         userexits = User.objects.filter(username=username).first()
 
@@ -29,7 +28,7 @@ def create(request):
         else:
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
-            return HttpResponse(f'Usuário cadastrado com sucesso. Sua senha temporaria: {password}')
+            return redirect(reverse('login'))
 
 
 def login(request):
@@ -43,12 +42,12 @@ def login(request):
         if user:
             login_django(request, user)
             
-            return render(request, 'user/pages/logout.html')
+            return render(request, 'user/pages/login.html')
         else:
             return HttpResponse('Usuário ou senha inválido')
 
-@login_required(login_url='user:login', redirect_field_name='next')
+@login_required()
 def logout(request):
     logout_django(request)
-    return redirect(reverse('user:login'))
+    return redirect(reverse('login'))
     

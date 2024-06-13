@@ -15,7 +15,10 @@
         <br>
         <input type="submit" value='Login'>
         <br>
-
+        {% if user.is_authenticated %}
+            <p>Bem vindo {{ request.user.username }} </p>
+            <a href= {% url 'logout' %}>logout</a>
+        {% endif %}
     </form>
 
 </body>
