@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.http import Http404
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 def register_get(request):
@@ -26,9 +27,10 @@ def register_post(request):
         messages.success(request, 'Cliente cadastrado com sucesso.')
 
         del(request.session['register_form_data'])
+        return redirect('user:login_get')
 
 
-    return redirect('user:register')
+    return redirect('user:register_get')
 
 def login_get(request):
     form = LoginForm()
@@ -54,4 +56,9 @@ def login_post(request):
             messages.error(request, 'Usuário e/ou senha inválidas.')
     else:
         messages.error(request, 'Erro ao validar formulário.')
-    return redirect(reverse('user:login'))
+    return redirect(reverse('user:login_get'))
+
+@login_required(login_url='user:login_get')
+def logout_get(request):
+    logout(request)
+    return redirect(reverse('user:login_get'))

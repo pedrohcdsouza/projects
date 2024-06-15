@@ -1,6 +1,6 @@
 
 <div class="main-content">
-    <form action="{% url "user:register_post" %}" method='POST'>
+    <form action="{% url "user:login_post" %}" method='POST'>
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
@@ -16,4 +16,13 @@
                 <button type="submit">Enviar</button>
             </div>
     </form>
+    
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'user:logout_get' %}" method="POST">
+        {% csrf_token %}
+        <p>Bem-vindo {{ request.user.username }}</p>
+        <button type="submit">Deslogar</button>
+    </form>
+    {% endif %}
+
 </div>
