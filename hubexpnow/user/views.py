@@ -30,3 +30,6 @@ def register_post(request):
 
 def login_get(request):
     return render(request, 'user/pages/login.html')
+
+def login_post(request):
+    return render(request, 'user/pages/login.html')
