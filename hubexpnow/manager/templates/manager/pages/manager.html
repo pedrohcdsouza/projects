@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manager</title>
 </head>
 <body>
-    <h1>Bem-vindo ao Manager</h1>
-    <button onclick="window.location.href='{% url 'create' %}'">Criar Usuário</button>
+    Bem-vindo manager {{ request.user.username }}
 </body>
 </html>
