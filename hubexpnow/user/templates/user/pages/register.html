@@ -1,6 +1,6 @@
 
 <div class="main-content">
-    <form action="{% url "user:create" %}" method='POST'>
+    <form action="{% url "user:register_post" %}" method='POST'>
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
