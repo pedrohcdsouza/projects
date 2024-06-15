@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from manager import decorators
 
+decorators.group_required('analysts')
 def register_get(request):
     register_form_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_form_data)
@@ -13,6 +15,7 @@ def register_get(request):
         'form': form,
     })
 
+decorators.group_required('analysts')
 def register_post(request):
 
     if not request.POST:
@@ -27,7 +30,7 @@ def register_post(request):
         messages.success(request, 'Cliente cadastrado com sucesso.')
 
         del(request.session['register_form_data'])
-        return redirect('user:login_get')
+        return redirect('manager')
 
 
     return redirect('user:register_get')
