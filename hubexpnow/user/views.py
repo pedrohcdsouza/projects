@@ -3,14 +3,14 @@ from .forms import RegisterForm
 from django.http import Http404
 from django.contrib import messages
 
-def register(request):
+def register_get(request):
     register_form_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_form_data)
     return render(request, 'user/pages/register.html', {
         'form': form,
     })
 
-def create(request):
+def register_post(request):
 
     if not request.POST:
         raise Http404()
@@ -27,3 +27,6 @@ def create(request):
 
 
     return redirect('user:register')
+
+def login_get(request):
+    return render(request, 'user/pages/login.html')
