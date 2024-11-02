@@ -1,9 +1,0 @@
-<div class="container">
-    <h2>Detalhes do Cliente: {{ client.username }}</h2>
-
-    <p><strong>Nome:</strong> {{ client.first_name }}</p>
-    <p><strong>Email:</strong> {{ client.email }}</p>
-
-    {% comment %} <a href="{% url 'edit_client' client.username %}" class="btn btn-sm btn-info">Editar</a>
-    <a href="{% url 'delete_client' client.username %}" class="btn btn-sm btn-danger">Remover</a> {% endcomment %}
-</div>
